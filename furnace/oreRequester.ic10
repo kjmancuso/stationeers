@@ -1,5 +1,5 @@
 alias quantdial d0
-alias targetIngot d1
+alias targetDial d1
 alias quantdisp d2
 alias silowriter d3
 alias quantMem d4
@@ -8,7 +8,7 @@ alias ingotkey r1
 alias ingotquant r2
 
 start:
-l ingotkey targetIngot Setting #loading ingot key
+l ingotkey targetDial Setting #loading ingot key
 l r0 quantdial Setting #loading quantity
 mul ingotquant r0 500
 brne ingotkey 12 2
