@@ -1,0 +1,29 @@
+alias quantdial d0
+alias targetIngot d1
+alias quantdisp d2
+alias silowriter d3
+alias quantMem d4
+
+alias ingotkey r1
+alias ingotquant r2
+
+start:
+l ingotkey targetIngot Setting #loading ingot key
+l r0 quantdial Setting #loading quantity
+mul ingotquant r0 500
+brne ingotkey 12 2
+mul ingotquant r0 400 #400 grams for steel
+brnez r0 2
+move ingotquant 200 #dial=0 is 200 grams
+s quantdisp Setting ingotquant
+brlt ingotkey 13 2 #fixing grams for superalloys
+#mul ingotquant ingotquant 4
+s quantMem Setting ingotquant
+lbn r7 491845673 HASH("FurnaceActivate") Activate 1
+breqz r7 6
+sbn -128473777 HASH("Dispenser") Setting ingotkey #transmitting to silos
+yield
+sbn -128473777 HASH("Dispenser") Setting ingotquant
+yield
+sbn -128473777 HASH("Dispenser") Setting 0
+j start

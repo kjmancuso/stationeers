@@ -1,0 +1,125 @@
+alias dial d0
+alias targetIngot d1
+alias targetPressure d2
+alias targetTemperature d3
+alias pressureDisplay d4
+alias tempDisplay d5
+
+alias selection r0
+alias pressure r1
+alias temp r2
+
+start:
+l selection dial Setting
+beq selection 0 off
+beq selection 1 copper
+beq selection 2 gold
+beq selection 3 iron
+beq selection 4 lead
+beq selection 5 nickel
+beq selection 6 silicon
+beq selection 7 silver
+beq selection 8 constantan
+beq selection 9 electrum
+beq selection 10 invar
+beq selection 11 solder
+beq selection 12 steel
+beq selection 13 astroloy
+beq selection 14 hastelloy
+beq selection 15 inconel
+beq selection 16 stellite
+bge selection 17 waspalloy
+
+off: #0
+s targetIngot Setting 0
+j start
+silicon: #1
+s targetIngot Setting -290196476
+j basicIngot
+iron:#2
+s targetIngot Setting -1301215609
+j basicIngot
+gold: #3
+s targetIngot Setting 226410516
+j basicIngot
+copper: #4
+s targetIngot Setting -404336834
+j basicIngot
+silver: #5
+s targetIngot Setting -929742000
+j basicIngot
+lead: #6
+s targetIngot Setting 2134647745
+j basicIngot
+nickel: #7
+s targetIngot Setting -1406385572
+j basicIngot
+steel: #8
+s targetIngot Setting -654790771
+j basicIngot
+
+constantan: #9
+s targetIngot Setting 1058547521
+s targetPressure Setting 20000
+s targetTemperature Setting 1200
+j updateDisplay
+
+astroloy: #10
+s targetIngot Setting 412924554
+s targetPressure Setting 1200
+s targetTemperature Setting 30000
+j updateDisplay
+
+inconel: #11
+s targetIngot Setting -787796599
+s targetPressure Setting 23500
+s targetTemperature Setting 1200
+j updateDisplay
+
+electrum: #12
+s targetIngot Setting 502280180
+s targetPressure Setting 800
+s targetTemperature Setting 1200
+j updateDisplay
+
+stellite: #13
+s targetIngot Setting -1897868623
+s targetPressure Setting 10000
+s targetTemperature Setting 1800
+j updateDisplay
+
+solder: #14
+s targetIngot Setting -82508479
+s targetPressure Setting 1200
+s targetTemperature Setting 350
+j updateDisplay
+
+waspalloy: #15
+s targetIngot Setting 156348098
+s targetPressure Setting 50000
+s targetTemperature Setting 400
+j updateDisplay
+
+invar: #16
+s targetIngot Setting -297990285
+s targetPressure Setting 18000
+s targetTemperature Setting 1200
+j updateDisplay
+
+hastelloy: #17
+s targetIngot Setting 1579842814
+s targetPressure Setting 25000
+s targetTemperature Setting 950
+j updateDisplay
+
+basicIngot:
+s targetPressure Setting 1200
+s targetTemperature Setting 1200
+j updateDisplay
+
+updateDisplay:
+l pressure targetPressure Setting
+l temp targetTemperature Setting
+s pressureDisplay Setting pressure
+s tempDisplay Setting temp
+j start
