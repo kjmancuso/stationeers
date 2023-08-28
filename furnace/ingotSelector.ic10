@@ -1,14 +1,10 @@
 alias dial d0
 alias targetIngot d1
-alias targetPressure d2
-alias targetTemperature d3
-alias pressureDisplay d4
-alias tempDisplay d5
-
+alias pressureDisplay d2
+alias tempDisplay d3
 alias selection r0
 alias pressure r1
 alias temp r2
-
 start:
 l selection dial Setting
 beq selection 0 off
@@ -29,9 +25,12 @@ beq selection 14 hastelloy
 beq selection 15 inconel
 beq selection 16 stellite
 bge selection 17 waspalloy
-
 off: #0
 s targetIngot Setting 0
+sbn -851746783 HASH("tempMin") Setting 0
+sbn -851746783 HASH("tempMax") Setting 0
+sbn -851746783 HASH("pressMin") Setting 0
+sbn -851746783 HASH("pressMax") Setting 0
 j start
 silicon: #1
 s targetIngot Setting -290196476
@@ -57,69 +56,72 @@ j basicIngot
 steel: #8
 s targetIngot Setting -654790771
 j basicIngot
-
 constantan: #9
 s targetIngot Setting 1058547521
-s targetPressure Setting 20000
-s targetTemperature Setting 1200
-j updateDisplay
-
+sbn -851746783 HASH("tempMin") Setting 1000
+sbn -851746783 HASH("tempMax") Setting 10000
+sbn -851746783 HASH("pressMin") Setting 20000
+sbn -851746783 HASH("pressMax") Setting 40000
+j start
 astroloy: #10
 s targetIngot Setting 412924554
-s targetPressure Setting 1200
-s targetTemperature Setting 30000
-j updateDisplay
-
+sbn -851746783 HASH("tempMin") Setting 1000
+sbn -851746783 HASH("tempMax") Setting 10000
+sbn -851746783 HASH("pressMin") Setting 30000
+sbn -851746783 HASH("pressMax") Setting 40000
+j start
 inconel: #11
 s targetIngot Setting -787796599
-s targetPressure Setting 23500
-s targetTemperature Setting 1200
-j updateDisplay
-
+sbn -851746783 HASH("tempMin") Setting 1000
+sbn -851746783 HASH("tempMax") Setting 10000
+sbn -851746783 HASH("pressMin") Setting 23500
+sbn -851746783 HASH("pressMax") Setting 24000
+j start
 electrum: #12
 s targetIngot Setting 502280180
-s targetPressure Setting 800
-s targetTemperature Setting 1200
-j updateDisplay
-
+sbn -851746783 HASH("tempMin") Setting 1000
+sbn -851746783 HASH("tempMax") Setting 10000
+sbn -851746783 HASH("pressMin") Setting 800
+sbn -851746783 HASH("pressMax") Setting 2400
+j start
 stellite: #13
 s targetIngot Setting -1897868623
-s targetPressure Setting 10000
-s targetTemperature Setting 1800
-j updateDisplay
-
+sbn -851746783 HASH("tempMin") Setting 1800
+sbn -851746783 HASH("tempMax") Setting 10000
+sbn -851746783 HASH("pressMin") Setting 10000
+sbn -851746783 HASH("pressMax") Setting 20000
+j start
 solder: #14
 s targetIngot Setting -82508479
-s targetPressure Setting 1200
-s targetTemperature Setting 350
-j updateDisplay
-
+sbn -851746783 HASH("tempMin") Setting 350
+sbn -851746783 HASH("tempMax") Setting 550
+sbn -851746783 HASH("pressMin") Setting 1000
+sbn -851746783 HASH("pressMax") Setting 40000
+j start
 waspalloy: #15
 s targetIngot Setting 156348098
-s targetPressure Setting 50000
-s targetTemperature Setting 400
-j updateDisplay
-
+sbn -851746783 HASH("tempMin") Setting 400
+sbn -851746783 HASH("tempMax") Setting 800
+sbn -851746783 HASH("pressMin") Setting 50000
+sbn -851746783 HASH("pressMax") Setting 55000
+j start
 invar: #16
 s targetIngot Setting -297990285
-s targetPressure Setting 18000
-s targetTemperature Setting 1200
-j updateDisplay
-
+sbn -851746783 HASH("tempMin") Setting 1200
+sbn -851746783 HASH("tempMax") Setting 1500
+sbn -851746783 HASH("pressMin") Setting 18000
+sbn -851746783 HASH("pressMax") Setting 20000
+j start
 hastelloy: #17
 s targetIngot Setting 1579842814
-s targetPressure Setting 25000
-s targetTemperature Setting 950
-j updateDisplay
-
+sbn -851746783 HASH("tempMin") Setting 950
+sbn -851746783 HASH("tempMax") Setting 1000
+sbn -851746783 HASH("pressMin") Setting 25000
+sbn -851746783 HASH("pressMax") Setting 30000
+j start
 basicIngot:
-s targetPressure Setting 1200
-s targetTemperature Setting 1200
-j updateDisplay
-
-updateDisplay:
-l pressure targetPressure Setting
-l temp targetTemperature Setting
-s pressureDisplay Setting pressure
-s tempDisplay Setting temp
+sbn -851746783 HASH("tempMin") Setting 1000
+sbn -851746783 HASH("tempMax") Setting 10000
+sbn -851746783 HASH("pressMin") Setting 1000
+sbn -851746783 HASH("pressMax") Setting 40000
 j start

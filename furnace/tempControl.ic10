@@ -5,112 +5,71 @@ alias HotPump d3
 alias ColdPump d4
 alias Indicator d5
 
-alias TargetTemp r0
-alias TargetPress r1
-alias CurrentTemp r2
-alias CurrentPress r3
-alias OverTemp r4
-alias OverPress r5
+alias furnTemp r0
+alias furnPress r1
+alias tempmax r2
+alias tempmin r3
+alias pressmax r4
+alias pressmin r5
 alias targetIngot r11
 
+s HotPump On 0
+s ColdPump On 0
+s HotPump Setting 50 #Fuel Setting
+s ColdPump Setting 30 #Coolant Setting
+s Furnace SettingInput 100
+
 pre:
+lbn tempmax -851746783 HASH("tempMax") Setting 1
+lbn tempmin -851746783 HASH("tempMin") Setting 1
+lbn pressmax -851746783 HASH("pressMax") Setting 1
+lbn pressmin -851746783 HASH("pressMin") Setting 1
+sbn -815193061 HASH("tempMin Display") Setting tempmin
+sbn -815193061 HASH("tempMax Display") Setting tempmax
+sbn -815193061 HASH("pressMin Display") Setting pressmin
+sbn -815193061 HASH("pressMax Display") Setting pressmax
 lbn r7 491845673 HASH("FurnaceActivate") Activate 1
-breqz r7 -1
+beqz r7 pre
 s Indicator On 1
 j start
 
 start:
 lbn targetIngot -851746783 HASH("targetIngot") Setting 1
+beqz targetIngot end
 l r10 Furnace RecipeHash
 lbn r12 -851746783 HASH("targetQuantity") Setting 1
 l r16 Furnace Reagents
 brne r12 r16 2
 beq r10 targetIngot end
-s Furnace SettingInput 100
-l TargetTemp TempMem Setting
-l TargetPress PressMem Setting
-l CurrentTemp Furnace Temperature
-l CurrentPress Furnace Pressure
+l furnPress Furnace Pressure
+l furnTemp Furnace Temperature
+bgt furnPress 60000 fastvent
+bgt furnPress 57000 vent
+ble furnTemp tempmin warmup
+ble furnPress pressmin warmup
+s HotPump On 0
+bge furnPress pressmax slowvent
+s Furnace SettingOutput 0
+bge furnTemp tempmax cooldown
+s ColdPump On 0
+j start
+warmup:
+s Furnace SettingOutput 0
+s HotPump On 1
 s Furnace Activate 1
-move r6 0
-sgt OverPress CurrentPress TargetPress
-sgt OverTemp CurrentTemp TargetTemp
-add r6 OverPress OverTemp
-beq r6 2 overBoth
-beq r6 0 underBoth
-move r6 0
-sgt r6 CurrentPress TargetPress
-beq r6 1 underTemp
-j underPress
-overBoth:
+j start
+slowvent:
 s HotPump On 0
-s ColdPump On 0
-s Furnace SettingOutput 100
-s Indicator Color 4
-yield
+s Furnace SettingOutput 15
 j start
-underBoth:
-s Indicator Color 11
-s ColdPump On 0
-s Furnace SettingOutput 0
-sub r6 TargetPress CurrentPress
-bgt r6 1000 fullHot
-bgt r6 500 slowHot
-bgt r6 100 verySlowHot
-sub r6 TargetTemp CurrentTemp
-blt r6 25 closeEnough
+vent:
+s Furnace SettingOutput 30
 j start
-verySlowHot:
-s HotPump Setting 1
-s HotPump On 1
-yield
-j start
-slowHot:
-s HotPump Setting 10
-s HotPump On 1
-yield
-j start
-fullHot:
-s HotPump Setting 50
-s HotPump On 1
-yield
-j start
-underTemp:
-s Indicator Color 0
-s HotPump On 1
-s ColdPump On 0
+fastvent:
 s Furnace SettingOutput 100
 j start
-underPress:
-s Indicator Color 3
-s HotPump On 0
-s Furnace SettingOutput 0
-sub r6 TargetPress CurrentPress
-bgt r6 1000 fullCold
-bgt r6 500 slowCold
-bgt r6 100 verySlowCold
-sub r6 CurrentTemp TargetTemp
-blt r6 25 closeEnough
-j start
-verySlowCold:
-s ColdPump Setting 1
+cooldown:
 s ColdPump On 1
-j start
-slowCold:
-s ColdPump Setting 10
-s ColdPump On 1
-j start
-fullCold:
-s ColdPump Setting 50
-s ColdPump On 1
-j start
-closeEnough:
-s Indicator Color 2
-s HotPump On 0
-s ColdPump On 0
-s Furnace SettingInput 0
-s Furnace SettingOutput 0
-sleep 1
 j start
 
 end:
@@ -118,8 +77,8 @@ s HotPump On 0
 s ColdPump On 0
 s Furnace Open 1
 s Furnace SettingOutput 100
-l CurrentPress Furnace Pressure
-brge CurrentPress 1000 -1
+l furnPress Furnace Pressure
+brge furnPress 1000 -1
 s Furnace SettingOutput 0
 s Furnace Open 0
 s Indicator Color 7

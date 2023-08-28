@@ -17,10 +17,10 @@ brnez r0 2
 move ingotquant 200 #dial=0 is 200 grams
 s quantdisp Setting ingotquant
 brlt ingotkey 13 2 #fixing grams for superalloys
-#mul ingotquant ingotquant 4
+mul ingotquant ingotquant 4
 s quantMem Setting ingotquant
 lbn r7 491845673 HASH("FurnaceActivate") Activate 1
-breqz r7 6
+beqz r7 start
 sbn -128473777 HASH("Dispenser") Setting ingotkey #transmitting to silos
 yield
 sbn -128473777 HASH("Dispenser") Setting ingotquant
