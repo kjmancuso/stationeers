@@ -28,56 +28,52 @@ move silvercount 0
 move cobaltcount 0
 move coalcount 0
 move steelcount 0
-s silicon ClearMemory 1 #clearing memory
-s silver ClearMemory 1
-s cobalt ClearMemory 1
-s coal ClearMemory 1
-s steel ClearMemory 1
-brne requestkey 6 2 #silicon
+brne requestkey 6 4 #silicon
 mul siliconcount requestquant 1
-brne requestkey 7 2 #silver
+s silicon Setting siliconcount
+s silicon Open 1
+brne requestkey 7 4 #silver
 mul silvercount requestquant 1
-brne requestkey 9 2 #electrum
+s silver Setting silvercount
+s silver Open 1
+brne requestkey 9 4 #electrum
 mul silvercount requestquant 0.5
-brne requestkey 12 2 #steel
+s silver Setting silvercount
+s silver Open 1
+brne requestkey 12 4 #steel
 mul coalcount requestquant 0.25
-brne requestkey 13 3 #astroloy
+s coal Setting coalcount
+s coal Open 1
+brne requestkey 13 7 #astroloy
 mul cobaltcount requestquant 0.25
 mul steelcount requestquant 0.5
-brne requestkey 14 3 #hastelloy
+s cobalt Setting cobaltcount
+s cobalt Open 1
+s steel Setting steelcount
+s steel Open 1
+brne requestkey 14 7 #hastelloy
 mul silvercount requestquant 0.5
 mul cobaltcount requestquant 0.25
-brne requestkey 15 2 #inconel
+s silver Setting silvercount
+s silver Open 1
+s cobalt Setting cobaaltcount
+s cobalt Open 1
+brne requestkey 15 4 #inconel
 mul steelcount requestquant 0.25
-brne requestkey 16 4 #stellite
+s steel Setting steelcount
+s steel Open 1
+brne requestkey 16 10 #stellite
 mul siliconcount requestquant 0.5
 mul silvercount requestquant 0.25
 mul cobaltcount requestquant 0.25
-brne requestkey 17 2 #waspalloy
+s silicon Setting siliconcount
+s silicon Open 1
+s silver Setting silvercount
+s silver Open 1
+s cobalt Setting cobaltcount
+s cobalt Open 1
+brne requestkey 17 4 #waspalloy
 mul silvercount requestquant 0.25
-dispense:
-move opencount 0 #clearing open count
-l r0 silicon ExportCount #silicon
-slt r0 r0 siliconcount
-s silicon Open r0
-add opencount opencount r0
-l r0 silver ExportCount #silver
-slt r0 r0 silvercount
-s silver Open r0
-add opencount opencount r0
-l r0 cobalt ExportCount #cobalt
-slt r0 r0 cobaltcount
-s cobalt Open r0
-add opencount opencount r0
-l r0 coal ExportCount #coal
-slt r0 r0 coalcount
-s coal Open r0
-add opencount opencount r0
-l r0 steel ExportCount #steel
-slt r0 r0 steelcount
-s steel Open r0
-add opencount opencount r0
-brnez opencount 2 #is opencount 0?
+s silver Setting silvercount
+s silver Open 1
 j start
-yield
-j dispense

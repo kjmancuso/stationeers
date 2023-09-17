@@ -3,7 +3,6 @@ alias gold d1
 alias iron d2
 alias lead d3
 alias nickel d4
-alias rocketmem d5
 define silo 1155865682
 define LED 1944485013
 
@@ -17,15 +16,6 @@ alias leadcount r8
 alias nickelcount r9
 
 start:
-lb r0 silo Quantity Minimum #above minimum?
-slt r0 r0 100
-brdns rocketmem 2
-s rocketmem Setting r0 #sending rocket signal
-select r0 r0 4 2
-sb LED Color r0 #light red if silos low
-lb r0 silo Quantity Maximum #below maximum?
-brlt r0 550 2
-sb LED Color 6 #light white if silos full
 l requestkey db Setting #receiving inputs
 yield
 beqz requestkey start #no inputs
@@ -36,67 +26,75 @@ move goldcount 0
 move ironcount 0
 move leadcount 0
 move nickelcount 0
-s copper ClearMemory 1 #clearing memory
-s gold ClearMemory 1
-s iron ClearMemory 1
-s lead ClearMemory 1
-s nickel ClearMemory 1
-brne requestkey 1 2 #copper
+brne requestkey 1 4 #copper
 mul coppercount requestquant 1
-brne requestkey 2 2 #gold
+s copper Setting coppercount
+s copper Open 1
+brne requestkey 2 4 #gold
 mul goldcount requestquant 1
-brne requestkey 3 2 #iron
+s gold Setting goldcount
+s gold Open 1
+brne requestkey 3 4 #iron
 mul ironcount requestquant 1
-brne requestkey 4 2 #lead
+s iron Setting ironcount
+s iron Open 1
+brne requestkey 4 4 #lead
 mul leadcount requestquant 1
-brne requestkey 5 2 #nickel
+s lead Setting leadcount
+s lead Open 1
+brne requestkey 5 4 #nickel
 mul nickelcount requestquant 1
-brne requestkey 8 3 #constantan
+s nickel Setting nickelcount
+s nickel Open 1
+brne requestkey 8 7 #constantan
 mul coppercount requestquant 0.5
 mul nickelcount requestquant 0.5
-brne requestkey 9 2 #electrum
+s copper Setting coppercount
+s copper Open 1
+s nickel Setting nickelcount
+s nickel Open 1
+brne requestkey 9 4 #electrum
 mul goldcount requestquant 0.5
-brne requestkey 10 3 #invar
+s gold Setting goldcount
+s gold Open 1
+brne requestkey 10 7 #invar
 mul ironcount requestquant 0.5
 mul nickelcount requestquant 0.5
-brne requestkey 11 3 #solder
+s iron Setting ironcount
+s iron Open 1
+s nickel Setting nickelcount
+s nickel Open 1
+brne requestkey 11 7 #solder
 mul ironcount requestquant 0.5
 mul leadcount requestquant 0.5
-brne requestkey 12 2 #steel
+s iron Setting ironcount
+s iron Open 1
+s lead Setting leadcount
+s lead Open 1
+brne requestkey 12 4 #steel
 mul ironcount requestquant 0.75
-brne requestkey 13 2 #astroloy
+s iron Setting ironcount
+s iron Open 1
+brne requestkey 13 4 #astroloy
 mul coppercount requestquant 0.25
-brne requestkey 14 2 #hastelloy
+s copper Setting coppercount
+s copper Open 1
+brne requestkey 14 4 #hastelloy
 mul nickelcount requestquant 0.25
-brne requestkey 15 3 #inconel
+s nickel Setting nickelcount
+s nickel Open 1
+brne requestkey 15 7 #inconel
 mul goldcount requestquant 0.5
 mul nickelcount requestquant 0.25
-brne requestkey 17 3 #waspalloy
+s gold Setting goldcount
+s gold Open 1
+s nickel Setting nickelcount
+s nickel Open 1
+brne requestkey 17 7 #waspalloy
 mul leadcount requestquant 0.5
 mul nickelcount requestquant 0.25
-dispense:
-move opencount 0 #clearing opencount
-l r0 copper ExportCount #copper
-slt r0 r0 coppercount
-s copper Open r0
-add opencount opencount r0
-l r0 gold ExportCount #gold
-slt r0 r0 goldcount
-s gold Open r0
-add opencount opencount r0
-l r0 iron ExportCount #iron
-slt r0 r0 ironcount
-s iron Open r0
-add opencount opencount r0
-l r0 lead ExportCount #lead
-slt r0 r0 leadcount
-s lead Open r0
-add opencount opencount r0
-l r0 nickel ExportCount #nickel
-slt r0 r0 nickelcount
-s nickel Open r0
-add opencount opencount r0
-brnez opencount 2 #is opencount 0?
+s lead Setting leadcount
+s lead Open 1
+s nickel Setting nickelcount
+s nickel Open 1
 j start
-yield
-j dispense
