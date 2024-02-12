@@ -1,0 +1,24 @@
+define LARGEBATTERY -1388288459
+define LEDSMALL -815193061
+define HEAVYSOLAR -1545574413
+define WINDTURBINE -2082355173
+define SOLIDGENERATOR 813146305
+
+alias batteryRatio r0
+alias batteryPercentage r1
+alias solarPower r2
+alias windPower r3
+alias coalPower r4
+
+start:
+lb batteryRatio LARGEBATTERY Ratio Average
+mul batteryPercentage batteryRatio 100
+sbn LEDSMALL HASH("battRatio") Setting batteryPercentage
+lb solarPower HEAVYSOLAR Charge Sum
+sbn LEDSMALL HASH("solarPower") Setting solarPower
+lb windPower WINDTURBINE PowerGeneration Sum
+sbn LEDSMALL HASH("windPower") Setting windPower
+lb coalPower SOLIDGENERATOR PowerGeneration Sum
+sbn LEDSMALL HASH("coalPower") Setting coalPower
+yield
+j start
