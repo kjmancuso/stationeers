@@ -32,16 +32,16 @@ lbn lead SILO HASH("Lead Silo") Quantity Sum
 sbn LEDSMALL HASH("Lead Display") Setting iron
 
 lbn nickel SILO HASH("Nickel Silo") Quantity Sum
-sbn LEDSMALL HASH("Nickel Display") Setting coal
+sbn LEDSMALL HASH("Nickel Display") Setting nickel
 
 lbn silver SILO HASH("Silver Silo") Quantity Sum
-sbn LEDSMALL HASH("Silver Display") Setting coal
+sbn LEDSMALL HASH("Silver Display") Setting silver
 
 lbn silicon SILO HASH("Silicon Silo") Quantity Sum
-sbn LEDSMALL HASH("Silicon Display") Setting coal
+sbn LEDSMALL HASH("Silicon Display") Setting silicon
 
 lbn steel SILO HASH("Steel Silo") Quantity Sum
-sbn LEDSMALL HASH("Steel Display") Setting coal
+sbn LEDSMALL HASH("Steel Display") Setting steel
 
 yield
 j start
