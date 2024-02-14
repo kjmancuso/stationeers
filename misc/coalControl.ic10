@@ -1,0 +1,21 @@
+alias generator d0
+
+alias ratio r0
+
+define BATTERYLARGE -1388288459
+
+define MINRATIO 0.10
+define MAXRATIO 0.15
+
+start:
+lb ratio BATTERYLARGE Ratio Average
+brgt ratio MINRATIO 4
+s generator On 1
+yield
+j start
+brlt ratio MAXRATIO 4
+s generator On 0
+yield
+j start
+yield
+j start
