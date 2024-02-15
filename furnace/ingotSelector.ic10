@@ -1,7 +1,5 @@
 alias dial d0
 alias targetIngot d1
-alias pressureDisplay d2
-alias tempDisplay d3
 alias selection r0
 alias pressure r1
 alias temp r2
