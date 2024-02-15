@@ -1,0 +1,16 @@
+alias tank d0
+alias pump d1
+
+alias pressure r0
+
+define MAXPRESSURE 20000
+
+start:
+l pressure tank Pressure
+brgt pressure MAXPRESSURE 4
+s pump On 1
+yield
+j start
+s pump On 0
+yield
+j start
