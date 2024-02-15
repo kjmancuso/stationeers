@@ -29,7 +29,7 @@ lbn iron SILO HASH("Iron Silo") Quantity Sum
 sbn LEDSMALL HASH("Iron Display") Setting iron
 
 lbn lead SILO HASH("Lead Silo") Quantity Sum
-sbn LEDSMALL HASH("Lead Display") Setting iron
+sbn LEDSMALL HASH("Lead Display") Setting lead
 
 lbn nickel SILO HASH("Nickel Silo") Quantity Sum
 sbn LEDSMALL HASH("Nickel Display") Setting nickel
