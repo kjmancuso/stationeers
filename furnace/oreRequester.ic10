@@ -1,8 +1,7 @@
 alias quantdial d0
 alias targetDial d1
 alias quantdisp d2
-alias silowriter d3
-alias quantMem d4
+alias quantMem d3
 
 alias ingotkey r1
 alias ingotquant r2
