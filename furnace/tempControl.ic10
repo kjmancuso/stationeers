@@ -1,9 +1,7 @@
 alias Furnace d0
-alias TempMem d1
-alias PressMem d2
-alias HotPump d3
-alias ColdPump d4
-alias Indicator d5
+alias HotPump d1
+alias ColdPump d2
+alias Indicator d3
 
 alias furnTemp r0
 alias furnPress r1
