@@ -1,0 +1,43 @@
+alias sensor d0
+alias presDisp d1
+alias tempDisp d2
+alias light d3
+
+alias temp r0
+alias press r1
+alias battRatio r2
+
+define GASGENERATOR 1165997963
+define MAXTEMPERATURE 328
+define BATTERY -1388288459
+
+s light Color 6
+start:
+lb battRatio BATTERY Ratio Average
+l temp sensor Temperature
+l press sensor Pressure
+s presDisp Setting press
+s tempDisp Setting temp
+bgt temp MAXTEMPERATURE hot
+blt battRatio 0.80 on
+bgt battRatio 0.90 off
+yield
+j start
+
+off:
+sb GASGENERATOR On 0
+s light Color 6
+yield
+j start
+
+on:
+sb GASGENERATOR On 1
+s light Color 2
+yield
+j start
+
+hot:
+sb GASGENERATOR On 0
+s light Color 4
+yield
+j start
