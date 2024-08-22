@@ -1,0 +1,68 @@
+# Based off of CowsAreEvil's Harvie Controller
+define GETSEEDS 0  # -1(No)  0(Yes)
+define USEPOOP 0    #  0(No)  1(Yes)
+
+s db Setting 1
+
+alias harvie r1
+alias tray r2
+
+start:
+yield
+move harvie HASH("Potato Harvie 0")
+move tray HASH("Potato Tray 0")
+jal checkdevice
+move harvie HASH("Potato Harvie 1")
+move tray HASH("Potato Tray 1")
+jal checkdevice
+move harvie HASH("Potato Harvie 2")
+move tray HASH("Potato Tray 2")
+jal checkdevice
+move harvie HASH("Potato Harvie 3")
+move tray HASH("Potato Tray 3")
+jal checkdevice
+move harvie HASH("Potato Harvie 4")
+move tray HASH("Potato Tray 4")
+jal checkdevice
+move harvie HASH("Potato Harvie 5")
+move tray HASH("Potato Tray 5")
+jal checkdevice
+move harvie HASH("Potato Harvie 6")
+move tray HASH("Potato Tray 6")
+jal checkdevice
+move harvie HASH("Potato Harvie 7")
+move tray HASH("Potato Tray 7")
+jal checkdevice
+move harvie HASH("Potato Harvie 8")
+move tray HASH("Potato Tray 8")
+jal checkdevice
+move harvie HASH("Potato Harvie 9")
+move tray HASH("Potato Tray 9")
+jal checkdevice
+j start
+
+checkdevice:
+lbn r0 958056199 harvie Activate Sum
+bnez r0 ra
+lbns r0 -1841632400 tray 0 Mature Sum
+beq r0 -1 plant
+bne r0 1 ra
+lbns r0 -1841632400 tray 0 Seeding Sum
+blt r0 GETSEEDS ra
+sbn 958056199 harvie Harvest 1
+j ra
+
+plant:
+lbns r0 958056199 harvie 0 Quantity Sum
+beqz r0 ra
+l r0 db Setting
+beqz r0 ra
+lbns r0 -1841632400 tray 1 Quantity Sum
+blt r0 USEPOOP ra
+lbn r0 -1841632400 tray Pressure Sum
+beqz r0 ra
+lbn r0 -1841632400 tray Temperature Sum
+blt r0 278 ra
+bgt r0 323 ra
+sbn 958056199 harvie Plant 1
+j ra
