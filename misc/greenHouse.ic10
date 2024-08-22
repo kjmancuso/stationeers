@@ -2,11 +2,13 @@ alias sensor d0
 alias tempDisplay d1
 alias pressureDisplay d2
 alias fan d3
+alias exhaust d4
 
 alias temp r0
 alias pressure r1
 
 define fanSetting 80
+define exhaustSetting 90
 
 start:
 l temp sensor Temperature
@@ -15,5 +17,6 @@ s tempDisplay Setting temp
 l pressure sensor Pressure
 s pressureDisplay Setting pressure
 s fan PressureExternal fanSetting
+s exhaust PressureExternal exhaustSetting
 yield
 j start
