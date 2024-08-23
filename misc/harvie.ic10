@@ -12,30 +12,39 @@ yield
 move harvie HASH("Potato Harvie 0")
 move tray HASH("Potato Tray 0")
 jal checkdevice
+yield
 move harvie HASH("Potato Harvie 1")
 move tray HASH("Potato Tray 1")
 jal checkdevice
+yield
 move harvie HASH("Potato Harvie 2")
 move tray HASH("Potato Tray 2")
 jal checkdevice
+yield
 move harvie HASH("Potato Harvie 3")
 move tray HASH("Potato Tray 3")
 jal checkdevice
+yield
 move harvie HASH("Potato Harvie 4")
 move tray HASH("Potato Tray 4")
 jal checkdevice
+yield
 move harvie HASH("Potato Harvie 5")
 move tray HASH("Potato Tray 5")
 jal checkdevice
+yield
 move harvie HASH("Potato Harvie 6")
 move tray HASH("Potato Tray 6")
 jal checkdevice
+yield
 move harvie HASH("Potato Harvie 7")
 move tray HASH("Potato Tray 7")
 jal checkdevice
+yield
 move harvie HASH("Potato Harvie 8")
 move tray HASH("Potato Tray 8")
 jal checkdevice
+yield
 move harvie HASH("Potato Harvie 9")
 move tray HASH("Potato Tray 9")
 jal checkdevice
