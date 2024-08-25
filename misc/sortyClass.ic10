@@ -1,0 +1,10 @@
+alias sorter d0
+alias instruction r0
+define class SortingClass.Ores
+
+sll r1 class 16
+sll r2 Equals 8
+or r1 r1 r2
+or instruction r1 3
+
+put sorter 0 instruction
