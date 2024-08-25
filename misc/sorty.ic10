@@ -1,0 +1,8 @@
+alias sorter d0
+alias instruction r0
+define hash -1516581844
+
+sll instruction hash 8
+or instruction instruction 1
+
+put sorter 0 instruction
