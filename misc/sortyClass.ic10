@@ -1,10 +1,8 @@
 alias sorter d0
-alias instruction r0
-define class SortingClass.Ores
 
-sll r1 class 16
-sll r2 Equals 8
-or r1 r1 r2
-or instruction r1 3
+sll r0 SortingClass.Ores 16
+sll r1 Equals 8
+or r0 r0 r1
+or r0 r0 SorterInstruction.FilterSortingClassCompare
 
-put sorter 0 instruction
+put sorter 0 r0
