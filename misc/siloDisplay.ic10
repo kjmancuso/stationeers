@@ -13,35 +13,35 @@ alias silicon r8
 alias steel r9
 
 start:
-lbn coal SILO HASH("Coal Silo") Quantity Sum
-sbn LEDSMALL HASH("Coal Display") Setting coal
+lbn coal SILO HASH("Silo Coal") Quantity Sum
+sbn LEDSMALL HASH("Display Coal") Setting coal
 
-lbn cobalt SILO HASH("Cobalt Silo") Quantity Sum
-sbn LEDSMALL HASH("Cobalt Display") Setting cobalt
+lbn cobalt SILO HASH("Silo Cobalt") Quantity Sum
+sbn LEDSMALL HASH("Display Cobalt") Setting cobalt
 
-lbn copper SILO HASH("Copper Silo") Quantity Sum
-sbn LEDSMALL HASH("Copper Display") Setting copper
+lbn copper SILO HASH("Silo Copper") Quantity Sum
+sbn LEDSMALL HASH("Display Copper") Setting copper
 
-lbn gold SILO HASH("Gold Silo") Quantity Sum
-sbn LEDSMALL HASH("Gold Display") Setting gold
+lbn gold SILO HASH("Silo Gold") Quantity Sum
+sbn LEDSMALL HASH(Display "Gold") Setting gold
 
-lbn iron SILO HASH("Iron Silo") Quantity Sum
-sbn LEDSMALL HASH("Iron Display") Setting iron
+lbn iron SILO HASH("Silo Iron") Quantity Sum
+sbn LEDSMALL HASH("Display Iron") Setting iron
 
-lbn lead SILO HASH("Lead Silo") Quantity Sum
-sbn LEDSMALL HASH("Lead Display") Setting lead
+lbn lead SILO HASH("Silo Lead") Quantity Sum
+sbn LEDSMALL HASH("Display Lead") Setting lead
 
-lbn nickel SILO HASH("Nickel Silo") Quantity Sum
-sbn LEDSMALL HASH("Nickel Display") Setting nickel
+lbn nickel SILO HASH("Silo Nickel") Quantity Sum
+sbn LEDSMALL HASH("Display Nickel") Setting nickel
 
-lbn silver SILO HASH("Silver Silo") Quantity Sum
-sbn LEDSMALL HASH("Silver Display") Setting silver
+lbn silver SILO HASH("Silo Silver") Quantity Sum
+sbn LEDSMALL HASH("Display Silver") Setting silver
 
-lbn silicon SILO HASH("Silicon Silo") Quantity Sum
-sbn LEDSMALL HASH("Silicon Display") Setting silicon
+lbn silicon SILO HASH("Silo Silicon") Quantity Sum
+sbn LEDSMALL HASH("Display Silicon") Setting silicon
 
-lbn steel SILO HASH("Steel Silo") Quantity Sum
-sbn LEDSMALL HASH("Steel Display") Setting steel
+lbn steel SILO HASH("Silo Steel") Quantity Sum
+sbn LEDSMALL HASH("Display Steel") Setting steel
 
 yield
 j start
