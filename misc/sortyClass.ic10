@@ -1,8 +1,13 @@
 alias sorter d0
+define steel HASH("ItemSteelIngot")
 
-sll r0 SortingClass.Ores 16
-sll r1 Equals 8
-or r0 r0 r1
-or r0 r0 SorterInstruction.FilterSortingClassCompare
+s sorter Mode 1
 
+clr sorter
+
+sll r0 steel 8
+or r0 r0 SorterInstruction.FilterPrefabHashEquals
 put sorter 0 r0
+sll r0 SortingClass.Ores 16
+or r0 r0 SorterInstruction.FilterSortingClassCompare
+put sorter 1 r0
