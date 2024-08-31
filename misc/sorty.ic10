@@ -1,8 +1,18 @@
 alias sorter d0
 alias instruction r0
-define hash -1516581844
 
-sll instruction hash 8
+define COAL 1724793494
+define COBALT -983091249
+define COPPER -707307845
+define GOLD -1348105509
+define IRON 1758427767
+define LEAD -190236170
+define NICKEL 1830218956
+define SILICON 1103972403
+define SILVER -916518678
+define STEEL -654790771
+
+sll instruction COAL 8
 or instruction instruction 1
 
 put sorter 0 instruction
