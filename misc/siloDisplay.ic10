@@ -23,7 +23,7 @@ lbn copper SILO HASH("Silo Copper") Quantity Sum
 sbn LEDSMALL HASH("Display Copper") Setting copper
 
 lbn gold SILO HASH("Silo Gold") Quantity Sum
-sbn LEDSMALL HASH(Display "Gold") Setting gold
+sbn LEDSMALL HASH("Display Gold") Setting gold
 
 lbn iron SILO HASH("Silo Iron") Quantity Sum
 sbn LEDSMALL HASH("Display Iron") Setting iron
