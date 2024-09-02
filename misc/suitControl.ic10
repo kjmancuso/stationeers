@@ -23,14 +23,19 @@ and good good temp2
 l temp suit TemperatureExternal
 sgt temp2 temp 273
 slt temp temp 323
-and good temp temp2
+and temp temp temp2
+and good good temp
 # Pressure
 l temp suit PressureExternal
 sgt temp2 temp 45
 slt temp temp 150
-and good temp temp2
+and temp temp temp2
+and good good temp
+
 beqz good close
 bnez good open
+
+j start
 
 open:
 s helmet Open 1
