@@ -1,0 +1,30 @@
+alias inputActual r0
+alias solarPower r1
+alias batteryPercentage r2
+alias maxSolar r3
+alias outputPower r4
+alias gasPower r5
+
+sbn -815193061 HASH("inputActual") Mode 2
+sbn -815193061 HASH("batteryPercent") Mode 1
+sbn -815193061 HASH("solarPower") Mode 2
+sbn -815193061 HASH("maxSolar") Mode 2
+sbn -815193061 HASH("outputPower") Mode 2
+sbn -815193061 HASH("gasPower") Mode 2
+
+start:
+lbn inputActual 1036015121 HASH("Input Analyzer") PowerActual Sum
+sbn -815193061 HASH("inputActual") Setting inputActual
+lb solarPower -1545574413 Charge Sum
+sbn -815193061 HASH("solarPower") Setting solarPower
+brlt solarPower maxSolar 2
+move maxSolar solarPower
+sbn -815193061 HASH("maxSolar") Setting maxSolar
+lb batteryPercentage -1388288459 Ratio Average
+sbn -815193061 HASH("batteryPercent") Setting batteryPercentage
+lbn outputPower 1036015121 HASH("Output Analyzer") PowerActual Sum
+sbn -815193061 HASH("outputPower") Setting outputPower
+lb gasPower 1165997963 PowerGeneration Sum
+sbn -815193061 HASH("gasPower") Setting gasPower
+yield
+j start
