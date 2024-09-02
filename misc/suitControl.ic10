@@ -1,0 +1,46 @@
+alias suit db
+alias helmet d0
+alias backpack d1
+
+alias good r0
+
+alias temp r15
+alias temp2 r14
+
+start:
+# Volatiles
+l temp suit RatioVolatiles
+slt good temp 0.02
+# Pollutants
+l temp suit RatioPollutant
+slt temp2 temp 0.02
+and good good temp2
+# NOS
+l temp suit RatioNitrousOxide
+slt temp2 temp 0.02
+and good good temp2
+# Temperature
+l temp suit TemperatureExternal
+sgt temp2 temp 273
+slt temp temp 323
+and good temp temp2
+# Pressure
+l temp suit PressureExternal
+sgt temp2 temp 45
+slt temp temp 150
+and good temp temp2
+beqz good close
+bnez good open
+
+open:
+s helmet Open 1
+s suit AirRelease 0
+s suit Filtration 0
+s suit On 0
+j start
+close:
+s helmet Open 0
+s suit AirRelease 1
+s suit Filtration 1
+s suit On 1
+j start
