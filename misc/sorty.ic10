@@ -11,6 +11,7 @@ define NICKEL 1830218956
 define SILICON 1103972403
 define SILVER -916518678
 define STEEL -654790771
+define URANIUM -1516581844
 
 sll instruction COAL 8
 or instruction instruction 1
