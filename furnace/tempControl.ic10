@@ -2,6 +2,8 @@ alias Furnace d0
 alias HotPump d1
 alias ColdPump d2
 alias Indicator d3
+alias targetIngotMem d4
+alias quantMem d5
 
 alias furnTemp r0
 alias furnPress r1
@@ -29,13 +31,14 @@ sbn -815193061 HASH("pressMax Display") Setting pressmax
 lbn r7 491845673 HASH("FurnaceActivate") Activate 1
 beqz r7 pre
 s Indicator On 1
+s Indicator Color 6
 j start
 
 start:
-lbn targetIngot -851746783 HASH("targetIngot") Setting 1
+l targetIngot targetIngotMem Setting
 beqz targetIngot end
 l r10 Furnace RecipeHash
-lbn r12 -851746783 HASH("targetQuantity") Setting 1
+l r12 quantMem Setting
 l r16 Furnace Reagents
 brne r12 r16 2
 beq r10 targetIngot end
@@ -52,25 +55,31 @@ bge furnTemp tempmax cooldown
 s ColdPump On 0
 j start
 warmup:
+s Indicator Color 3
 s Furnace SettingOutput 0
 s HotPump On 1
 s Furnace Activate 1
 j start
 slowvent:
+s Indicator Color 8
 s HotPump On 0
 s Furnace SettingOutput 15
 j start
 vent:
 s Furnace SettingOutput 30
+s Indicator Color 0
 j start
 fastvent:
+s Indicator Color 4
 s Furnace SettingOutput 100
 j start
 cooldown:
+s Indicator Color 1
 s ColdPump On 1
 j start
 
 end:
+s Indicator Color 2
 s HotPump On 0
 s ColdPump On 0
 s Furnace Open 1
@@ -79,6 +88,6 @@ l furnPress Furnace Pressure
 brge furnPress 1000 -1
 s Furnace SettingOutput 0
 s Furnace Open 0
-s Indicator Color 7
+s Indicator Color 6
 s Indicator On 0
 j pre
