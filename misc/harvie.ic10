@@ -1,6 +1,5 @@
 # Based off of CowsAreEvil's Harvie Controller
 define GETSEEDS 0  # -1(No)  0(Yes)
-define USEPOOP 0    #  0(No)  1(Yes)
 
 s db Setting 1
 
@@ -9,44 +8,44 @@ alias tray r2
 
 start:
 yield
-move harvie HASH("Potato Harvie 0")
-move tray HASH("Potato Tray 0")
+move harvie HASH("R0")
+move tray HASH("H0")
 jal checkdevice
 yield
-move harvie HASH("Potato Harvie 1")
-move tray HASH("Potato Tray 1")
+move harvie HASH("R1")
+move tray HASH("H1")
 jal checkdevice
 yield
-move harvie HASH("Potato Harvie 2")
-move tray HASH("Potato Tray 2")
+move harvie HASH("R2")
+move tray HASH("H2")
 jal checkdevice
 yield
-move harvie HASH("Potato Harvie 3")
-move tray HASH("Potato Tray 3")
+move harvie HASH("R3")
+move tray HASH("H3")
 jal checkdevice
 yield
-move harvie HASH("Potato Harvie 4")
-move tray HASH("Potato Tray 4")
+move harvie HASH("R4")
+move tray HASH("H4")
 jal checkdevice
 yield
-move harvie HASH("Potato Harvie 5")
-move tray HASH("Potato Tray 5")
+move harvie HASH("R5")
+move tray HASH("H5")
 jal checkdevice
 yield
-move harvie HASH("Potato Harvie 6")
-move tray HASH("Potato Tray 6")
+move harvie HASH("R6")
+move tray HASH("H6")
 jal checkdevice
 yield
-move harvie HASH("Potato Harvie 7")
-move tray HASH("Potato Tray 7")
+move harvie HASH("R7")
+move tray HASH("H7")
 jal checkdevice
 yield
-move harvie HASH("Potato Harvie 8")
-move tray HASH("Potato Tray 8")
+move harvie HASH("R8")
+move tray HASH("H8")
 jal checkdevice
 yield
-move harvie HASH("Potato Harvie 9")
-move tray HASH("Potato Tray 9")
+move harvie HASH("R9")
+move tray HASH("H9")
 jal checkdevice
 j start
 
@@ -66,8 +65,6 @@ lbns r0 958056199 harvie 0 Quantity Sum
 beqz r0 ra
 l r0 db Setting
 beqz r0 ra
-lbns r0 -1841632400 tray 1 Quantity Sum
-blt r0 USEPOOP ra
 lbn r0 -1841632400 tray Pressure Sum
 beqz r0 ra
 lbn r0 -1841632400 tray Temperature Sum
