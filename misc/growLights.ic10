@@ -1,0 +1,30 @@
+alias DispAvg d0
+alias DispMax d1
+define HDev HASH("StructureHydroponicsTrayData")
+define LIGHTS -1758710260
+
+s DispAvg Mode 1
+s DispMax Mode 1
+start:
+lbs r1 HDev 0 Efficiency Average
+yield
+s db Setting -1 #debug
+bnan r1 start
+yield
+s db Setting 2 #more debug
+lbs r2 HDev 0 Efficiency Average # data Fresh after 2 ticks
+lbs r3 HDev 0 Efficiency Maximum
+s DispMax Setting r3
+s DispAvg Setting r2
+sub r5 r5 1 #cooldown timer decrement
+s db Setting r5
+bgtz r5 start # skip toggle check if loiter isn't expired
+blt r2 r1 toggle #if the Efficiency has dropped in the last two ticks, toggle light
+j start
+toggle:
+lb r3 LIGHTS On Maximum
+seqz r4 r3 #invert light state
+sb LIGHTS On r4
+s db Setting r4
+move r5 60 #set cooldown timer
+j start
