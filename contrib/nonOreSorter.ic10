@@ -1,8 +1,0 @@
-alias sorter d0
-
-sll r0 SortingClass.Ores 16
-sll r1 NotEquals 8
-or r0 r0 r1
-or r0 r0 SorterInstruction.FilterSortingClassCompare
-
-put sorter 0 r0
