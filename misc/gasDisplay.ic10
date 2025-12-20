@@ -1,0 +1,50 @@
+alias pressure r0
+alias mixer r1
+
+sbn -815193061 HASH("Display - Volatiles") Mode 14
+sbn -815193061 HASH("Display - Fuel") Mode 14
+sbn -815193061 HASH("Display - Oxygen") Mode 14
+sbn -815193061 HASH("Display - Atmo") Mode 14
+sbn -815193061 HASH("Display - Nitrogen") Mode 14
+sbn -815193061 HASH("Display - Nitrous") Mode 14
+sbn -815193061 HASH("Display - Liquid Nitrous") Mode 12
+sbn -815193061 HASH("Display - CO2") Mode 14
+sbn -815193061 HASH("Display - Pollutants") Mode 14
+sbn -815193061 HASH("Display - Water") Mode 12
+
+start:
+lbn pressure 272136332 HASH("Tank - Volatiles") Pressure Sum
+mul pressure pressure 1000
+sbn -815193061 HASH("Display - Volatiles") Setting pressure
+lbn pressure 272136332 HASH("Tank - Fuel") Pressure Sum
+mul pressure pressure 1000
+sbn -815193061 HASH("Display - Fuel") Setting pressure
+lbn mixer 2104106366 HASH("Mixer - Fuel") On Sum
+sbn 1944485013 HASH("LED - Fuel") On mixer
+lbn pressure 272136332 HASH("Tank - Oxygen") Pressure Sum
+mul pressure pressure 1000
+sbn -815193061 HASH("Display - Oxygen") Setting pressure
+lbn pressure 272136332 HASH("Tank - Atmo") Pressure Sum
+mul pressure pressure 1000
+sbn -815193061 HASH("Display - Atmo") Setting pressure
+lbn mixer 2104106366 HASH("Mixer - Atmo") On Sum
+sbn 1944485013 HASH("LED - Atmo") On mixer
+lbn pressure 272136332 HASH("Tank - Nitrogen") Pressure Sum
+mul pressure pressure 1000
+sbn -815193061 HASH("Display - Nitrogen") Setting pressure
+lbn pressure 272136332 HASH("Tank - Nitrous") Pressure Sum
+mul pressure pressure 1000
+sbn -815193061 HASH("Display - Nitrous") Setting pressure
+lbn pressure 608607718 HASH("Tank - Liquid Nitrous") VolumeOfLiquid Sum
+sbn -815193061 HASH("Display - Liquid Nitrous") Setting pressure
+lbn pressure 272136332 HASH("Tank - CO2") Pressure Sum
+mul pressure pressure 1000
+sbn -815193061 HASH("Display - CO2") Setting pressure
+lbn pressure 272136332 HASH("Tank - Pollutants") Pressure Sum
+mul pressure pressure 1000
+sbn -815193061 HASH("Display - Pollutants") Setting pressure
+lbn pressure 608607718 HASH("Tank - Water") VolumeOfLiquid Sum
+sbn -815193061 HASH("Display - Water") Setting pressure
+
+yield
+j start
