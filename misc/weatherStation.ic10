@@ -1,0 +1,22 @@
+alias station d0
+alias sign d1
+alias light d2
+
+alias time r0
+alias alarm r1
+
+s sign Mode 7
+start:
+l time station NextWeatherEventTime
+breqz time 4
+s sign On 1
+s sign Setting time
+jr 2
+s sign On 0
+l alarm station Mode
+breqz alarm 3
+s light On 1
+jr 2
+s light On 0
+yield
+j start
