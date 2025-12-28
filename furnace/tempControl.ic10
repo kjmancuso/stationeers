@@ -19,6 +19,10 @@ s HotPump Setting 50 #Fuel Setting
 s ColdPump Setting 30 #Coolant Setting
 s Furnace SettingInput 100
 
+sbn -815193061 HASH("tempMin Display") Mode 3
+sbn -815193061 HASH("tempMax Display") Mode 3
+sbn -815193061 HASH("pressMin Display") Mode 14
+sbn -815193061 HASH("pressMax Display") Mode 14
 pre:
 lbn tempmax -851746783 HASH("tempMax") Setting 1
 lbn tempmin -851746783 HASH("tempMin") Setting 1
